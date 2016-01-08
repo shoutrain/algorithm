@@ -7,12 +7,12 @@
   ============================================================================
  */
 
-#include "merge_sort.h"
-// #include "quick_sort.h"
+// #include "merge_sort.h"
+#include "quick_sort.h"
 
 int main(void) {
-	mergeSort();
-	// quickSort();
+	// mergeSort();
+	quickSort();
 
 	puts(""); /* prints  */
 	return EXIT_SUCCESS;
