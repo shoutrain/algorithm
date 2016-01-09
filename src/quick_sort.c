@@ -17,8 +17,6 @@ static void _print(int *nums, int size) {
 	printf("\n");
 }
 
-#define SIZE 8
-
 static void _quickSort(int *nums, int start, int end) {
 	if (start >= end) {
 		return;
@@ -43,16 +41,17 @@ static void _quickSort(int *nums, int start, int end) {
 	}
 
 	nums[left] = key;
-	_print(nums, SIZE);
 	_quickSort(nums, start, left - 1);
 	_quickSort(nums, left + 1, end);
 }
 
 static void _run() {
 	int nums[] = { 49, 38, 65, 97, 76, 13, 27, 49 };
+	int size = sizeof(nums) / sizeof(int);
 
-	_print(nums, SIZE);
-	_quickSort(nums, 0, SIZE - 1);
+	_print(nums, size);
+	_quickSort(nums, 0, size - 1);
+	_print(nums, size);
 }
 
 void quickSort() {

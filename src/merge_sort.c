@@ -9,10 +9,10 @@
 
 static void _merge(int *unsorted, int l, int m, int r, int *sorted) {
 	int i = l;
-	int j = m;
+	int j = m + 1;
 	int k = 0;
 
-	while (i < m && j < r) {
+	while (i < m + 1 && j < r + 1) {
 		if (unsorted[i] < unsorted[j]) {
 			sorted[k++] = unsorted[i++];
 		} else {
@@ -20,12 +20,12 @@ static void _merge(int *unsorted, int l, int m, int r, int *sorted) {
 		}
 	}
 
-	if (i == m) {
-		while (j < r) {
+	if (i == m + 1) {
+		while (j < r + 1) {
 			sorted[k++] = unsorted[j++];
 		}
-	} else if (j == r) {
-		while (i < m) {
+	} else if (j == r + 1) {
+		while (i < m + 1) {
 			sorted[k++] = unsorted[i++];
 		}
 	}
@@ -36,11 +36,11 @@ static void _merge(int *unsorted, int l, int m, int r, int *sorted) {
 }
 
 static void _sort(int *unsorted, int l, int r, int *sorted) {
-	if (l + 1 < r) {
+	if (l < r) {
 		int m = (r + l) / 2;
 
 		_sort(unsorted, l, m, sorted);
-		_sort(unsorted, m, r, sorted);
+		_sort(unsorted, m + 1, r, sorted);
 		_merge(unsorted, l, m, r, sorted);
 	}
 }
@@ -54,24 +54,23 @@ static void _mergeSort(int *unsorted, int *sorted, int size) {
 		sorted[0] = unsorted[0];
 	}
 
-	_sort(unsorted, 0, size, sorted);
+	_sort(unsorted, 0, size - 1, sorted);
 }
-
-#define SIZE 11
 
 static void _run() {
 	int unsorted[] = { 4, 33, 34, 21, 9, 39, 22, 18, 7, -100, 100 };
-	int *sorted = (int *) malloc(SIZE * sizeof(int));
+	int size = sizeof(unsorted) / sizeof(int);
+	int *sorted = (int *) malloc(sizeof(unsorted));
 	int i = 0;
 
-	for (; i < SIZE; i++) {
+	for (; i < size; i++) {
 		printf("%d ", unsorted[i]);
 	}
 
 	printf("\n");
-	_mergeSort(unsorted, sorted, SIZE);
+	_mergeSort(unsorted, sorted, size);
 
-	for (i = 0; i < SIZE; i++) {
+	for (i = 0; i < size; i++) {
 		printf("%d ", sorted[i]);
 	}
 
