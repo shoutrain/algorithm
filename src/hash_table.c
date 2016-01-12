@@ -133,7 +133,7 @@ bool findKey(int key, int *value) {
 	return false;
 }
 
-void printAll() {
+static void _printAll() {
 	int i = 0;
 
 	for (; i < HASH_TABLE_SIZE; i++) {
@@ -154,10 +154,10 @@ static void _run() {
 	insertValue(234234323, 2);
 	insertValue(456345, 3);
 	insertValue(234236243, 4);
-	printAll();
+	_printAll();
 
 	deleteKey(234236243);
-	printAll();
+	_printAll();
 
 	deinitHashTable();
 }
